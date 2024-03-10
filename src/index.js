@@ -5,7 +5,6 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    require('dotenv').config();
     <App />
   </React.StrictMode>,
 )
