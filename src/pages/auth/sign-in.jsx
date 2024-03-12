@@ -1,11 +1,14 @@
 import React from 'react'
 import { auth, provider } from "../../config/firebaseConfig"
 import { signInWithPopup } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { illustration, goggle } from '../../assets'
+import {useGetUserInfo} from '../../hooks/useGetUserInfo'
+
 
 
 export const Auth = () => {
+    const {isAuth}= useGetUserInfo()
     const navigate = useNavigate()
     const signInWithGoogle = async () => {
         const results = await signInWithPopup(auth, provider)
@@ -17,6 +20,9 @@ export const Auth = () => {
         }
         localStorage.setItem('auth', JSON.stringify(authInfo))
         navigate("/home")
+        if(isAuth){
+            return <Navigate to={"/home"}/>
+        }
     }
     return (
         <div className='flex flex-col items-start md:items-center justify-center ml-6 md:ml-0 my-8'>
