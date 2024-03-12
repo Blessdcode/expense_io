@@ -1,9 +1,10 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import {getFirestore} from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 
+// require('dotenv').config()
 
 const firebaseConfig = {
   apiKey: "AIzaSyDRkH71hkI9I8oCAd_iW-9k3It3pD7kiDU",
