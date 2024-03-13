@@ -20,7 +20,7 @@ const AddExpense = () => {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [transactionAmount, setTransactionAmount] = useState()
+    const [transactionAmount, setTransactionAmount] = useState('')
     const [transactionType, setTransactionType] = useState()
 
     const {

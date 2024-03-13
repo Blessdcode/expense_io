@@ -3,6 +3,8 @@ import { AiFillDelete } from 'react-icons/ai';
 import { TbCurrencyNaira } from "react-icons/tb";
 import { useAddTransaction } from '../hooks/useAddTransaction';
 import { useGetTransaction } from '../hooks/useGetTransactions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Transaction = ({ transaction }) => {
   const { addTransaction } = useAddTransaction();
@@ -10,6 +12,8 @@ const Transaction = ({ transaction }) => {
   const [hoveredId, setHoveredId] = useState(null);
   const handleDelete = (transactionId) => {
     deleteTransaction(transactionId);
+    toast.success('Transaction deleted successfully!');
+
   };
 
   return (
