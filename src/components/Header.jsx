@@ -27,23 +27,26 @@ const Header = () => {
     const month = currentDate.toLocaleDateString('en-US', { month: 'long' });
     const imageUrl = "https://media.istockphoto.com/id/906808234/photo/handsome-man.jpg?s=612x612&w=0&k=20&c=Ec8IY-ETslaS56vmO77BJyEOpPM1hzJlLbs6xeKRoAc="
     return (
-        <div className='flex justify-around items-center mt-4 border-b mx-0 font-[500]'>
+        <div className='flex justify-around items-center mt-4 border-b mx-0 font-[500] pt-2'>
             <div className='flex flex-col pb-3 text-[14px] justify-start'>
                 <p>{dayOfWeek}, {dayOfMonth}</p>
                 <p>{month}</p>
             </div>
 
             {/* User details section */}
-            <div className='flex items-center'>
-                {
-                    profilePhoto && (
-                        <>
-                            <img src={profilePhoto} alt={name} className='w-7 h-7 mr-1 rounded-full bg-black object-cover' />
-                        </>
-                    )
-                }
-                <h3 className='font-[500] text-[16px]'>{name}</h3>
-                <div className='ml-5'> 
+            <div className='flex items-center flex-col justify-end pb-3'>
+                <div className='flex'>
+
+                    {
+                        profilePhoto && (
+                            <>
+                                <img src={profilePhoto} alt={name} className='w-7 h-7 mr-1 rounded-full bg-black object-cover' />
+                            </>
+                        )
+                    }
+                    <h3 className='font-[500] text-[16px]'>{name}</h3>
+                </div>
+                <div className='ml-5'>
                     <button className='btn' onClick={handleSignOut}>Sign out</button>
                 </div>
             </div>

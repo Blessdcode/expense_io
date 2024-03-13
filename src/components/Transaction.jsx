@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
+import { TbCurrencyNaira } from "react-icons/tb";
 import { useAddTransaction } from '../hooks/useAddTransaction';
 import { useGetTransaction } from '../hooks/useGetTransactions';
 
@@ -33,8 +34,14 @@ const Transaction = ({ transaction }) => {
               </div>
               <div
                 style={{ color: transactionType === "expense" ? "red" : "green" }}
-                className={`transaction text-[16px]`}>
-                <b>N{transactionAmount}</b>
+                className={`transaction text-[16px] flex items-center`}>
+                {/* <b>
+                  <TbCurrencyNaira />
+                  {transactionAmount}</b> */}
+                {transactionAmount >= 0 ? <h2 className='flex items-center'>
+                  <TbCurrencyNaira />{transactionAmount}</h2>
+                  : <h2 className='flex items-center'>-<TbCurrencyNaira />{transactionAmount * -1}</h2>
+                }
               </div>
 
               {hoveredId === id && (

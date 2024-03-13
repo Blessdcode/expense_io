@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { income, expense } from '../assets'
 import { useNavigate } from 'react-router-dom'
 import { useGetTransaction } from '../hooks/useGetTransactions';
+import { TbCurrencyNaira } from "react-icons/tb";
 
 
 
@@ -28,8 +29,12 @@ const Balance = () => {
       <div className='flex items-center justify-center flex-col mt-8'>
         <p className='text-[#91919F]'>Account Balance</p>
         {/* <h2 className='text-[56px] font-semibold text-primary'>N{balance}</h2> */}
-        {balance >= 0 ? <h2 className='text-[56px] font-semibold text-primary'>N{balance}</h2>
-          : <h2 className='text-[56px] font-semibold text-primary'>-N{balance * -1}</h2>
+        {balance >= 0 ? <h2 className='text-[56px] font-semibold text-primary flex items-center'>
+          <TbCurrencyNaira />
+          {balance}</h2>
+          : <h2 className='text-[56px] font-semibold text-primary flex items-center'>-
+            <TbCurrencyNaira />
+            {balance * -1}</h2>
         }
       </div>
 
@@ -47,7 +52,7 @@ const Balance = () => {
             </div>
             <div className='text-[18px]'>
               <p>Income</p>
-              <p><b>N</b>{Income}</p>
+              <p className="flex items-center"><TbCurrencyNaira/>{Income}</p>
             </div>
           </div>
 
@@ -59,7 +64,7 @@ const Balance = () => {
             </div>
             <div className='text-[18px]'>
               <p>Expense</p>
-              <p><b>N</b>{Expense}</p>
+              <p className="flex items-center"><TbCurrencyNaira/>{Expense}</p>
             </div>
           </div>
 

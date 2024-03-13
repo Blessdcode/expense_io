@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiFillHome } from 'react-icons/ai'
+import { TbCurrencyNaira } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom'
 import { useAddTransaction } from '../hooks/useAddTransaction';
 import { useGetTransaction } from '../hooks/useGetTransactions';
@@ -19,7 +20,7 @@ const AddExpense = () => {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [transactionAmount, setTransactionAmount] = useState(0)
+    const [transactionAmount, setTransactionAmount] = useState()
     const [transactionType, setTransactionType] = useState()
 
     const {
@@ -53,8 +54,9 @@ const AddExpense = () => {
                 <div className='text-white mt-20 '>
                     <p className=' text-lg'>Balance</p>
                     {/* <h2 className='text-[56px] font-semibold text-primary'>N{balance}</h2> */}
-                    {balance >= 0 ? <h2 className='text-[56px] font-semibold text-white'>N{balance}</h2>
-                        : <h2 className='text-[56px] font-semibold text-white'>-N{balance * -1}</h2>
+                    {balance >= 0 ? <h2 className='text-[56px] font-semibold text-white flex items-center'>
+                        <TbCurrencyNaira />{balance}</h2>
+                        : <h2 className='text-[56px] font-semibold text-white flex items-center'>-<TbCurrencyNaira />{balance * -1}</h2>
                     }
                 </div>
 
