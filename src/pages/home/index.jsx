@@ -5,7 +5,7 @@ import Balance from '../../components/Balance'
 import Transaction from '../../components/Transaction'
 export const Home = () => {
     return (
-        <div>
+        <div className=' h-screen'>
             <Header />
             <div className='container'>
                 <Balance />

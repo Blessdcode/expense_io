@@ -16,9 +16,9 @@ const Transaction = ({ transaction }) => {
     <div className='mt-10'>
       <div className='flex justify-between items-center mb-8'>
         <p className='text-[20px] text-primary'>Transactions</p>
-        <div className="btn">View all</div>
+        {/* <div className="btn">View all</div> */}
       </div>
-      <div className=' p-4  overflow-y-hidden overscroll-y-auto'>
+      <div className='p-4 h-[50vh] overflow-scroll'>
 
         {transactions.map((transaction, index) => {
 
