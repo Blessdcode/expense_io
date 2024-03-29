@@ -1,47 +1,53 @@
+/** @format */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .overflow {
-    overflow-x: hidden;
+	overflow-x: hidden;
+}
+
+html {
+	font-size: 1rem;
 }
 
 .overflow-scroll {
-    overflow-y: scroll;
-    overflow-x: hidden;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .overflow-scroll::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+	width: 0;
+	height: 0;
 }
 
 .container {
-    @apply my-[30px] mx-auto w-[350px];
+	@apply my-[30px] mx-auto w-[350px];
 }
 
 .btn {
-    @apply bg-[#FFDF8C] px-4 py-2 rounded-full font-semibold hover:scale-105 transition
+	@apply bg-[#FFDF8C] px-4 py-2 rounded-full font-semibold hover:scale-105 transition;
 }
 
 .box-shadow {
-    /* box-shadow: 4px 2px 16px  rgba(0, 0, 0, 0.3); */
-    border-radius: 16px;
+	/* box-shadow: 4px 2px 16px  rgba(0, 0, 0, 0.3); */
+	border-radius: 16px;
 }
 
-yyy label {
-    display: inline-block;
-    margin: 10px 0;
+label {
+	display: inline-block;
+	margin: 10px 0;
 }
 
-input[type='text'],
-input[type='number'] {
-    /* border: 1px solid #dedede; */
-    border-radius: 2px;
-    display: block;
-    font-size: 16px;
-    /* padding: 10px; */
-    width: 100%;
+input[type="text"],
+input[type="number"] {
+	/* border: 1px solid #dedede; */
+	border-radius: 2px;
+	display: block;
+	font-size: 16px;
+	/* padding: 10px; */
+	width: 100%;
 }
 
 /* 
@@ -70,3 +76,9 @@ input[type='number'] {
     padding: 4px;
     border-radius: 4px;
 } */
+
+.abs {
+	position: absolute;
+	right: 0;
+	margin-left: 12px;
+}

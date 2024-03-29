@@ -8,11 +8,12 @@ import { Home } from './pages/home/index'
 import AddIncome from './components/AddIncome'
 import AddExpense from './components/AddExpense'
 import { GlobalProvider } from './context/GlobarState'
-
+import TransactionAll from './components/all_transaction';
+// 
 
 export default function App() {
   return (
-    <div className="flex flex-col h-[100vh]  ">
+    <div className="flex flex-col  ">
       <GlobalProvider>
         <Router>
           <Routes>
@@ -20,6 +21,7 @@ export default function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/addincome' element={<AddIncome />} />
             <Route path='/addexpense' element={<AddExpense />} />
+            <Route path='/transaction' element={<TransactionAll />} />
           </Routes>
         </Router>
         <ToastContainer />
