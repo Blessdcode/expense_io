@@ -71,18 +71,16 @@ export default function TransactionAll() {
 													: "green",
 										}}
 										className={`transaction text-[16px] flex items-center `}>
-										{transactionAmount >= 0 ? (
+										{transactionType ===
+										"expense" ? (
 											<h2 className="flex items-center">
-												<TbCurrencyNaira />
+												-<TbCurrencyNaira />
 												{transactionAmount}
 											</h2>
 										) : (
 											<h2 className="flex items-center">
-												
-												-<TbCurrencyNaira />
-												{
-													transactionAmount * -1
-												}
+												<TbCurrencyNaira />
+												{transactionAmount}
 											</h2>
 										)}
 									</div>

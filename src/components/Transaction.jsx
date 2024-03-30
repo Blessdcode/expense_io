@@ -63,17 +63,15 @@ const Transaction = ({ transaction }) => {
 											: "green",
 								}}
 								className={`transaction text-[16px] flex items-center `}>
-								{/* <b>
-                  <TbCurrencyNaira />
-                  {transactionAmount}</b> */}
-								{transactionAmount > 0 ? (
+
+								{transactionType === "expense" ? (
 									<h2 className="flex items-center">
-										<TbCurrencyNaira />
+										-<TbCurrencyNaira />
 										{transactionAmount}
 									</h2>
 								) : (
 									<h2 className="flex items-center">
-										- <TbCurrencyNaira />
+										 <TbCurrencyNaira />
 										{transactionAmount}
 									</h2>
 								)}
