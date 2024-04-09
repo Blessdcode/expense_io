@@ -1,41 +1,59 @@
-import React, { createContext, useReducer, useEffect } from "react";
-import AppReducer from "./AppReducer";
+/** @format */
 
-const initialState = {
-    transactions: []
+import React, { createContext, useEffect, useContext, useState } from "react";
+import { auth } from "../config/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+
+const GlobalContext = createContext();
+
+export const useAuth = () => {
+	return useContext(GlobalContext);
 };
 
-export const GlobalContext = createContext(initialState);
-
 export const GlobalProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+	const [currentUser, setCurrentUser] = useState();
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
-    useEffect(() => {
-        // Save transactions to local storage whenever the state changes
-        localStorage.setItem("transactions", JSON.stringify(state.transactions));
-    }, [state.transactions]);
+	function signup(email, password) {
+		return auth
+			.createUserWithEmailAndPassword(email, password)
+			.then(() => {
+				// Optionally, you can perform additional actions upon successful sign-up
+			})
+			.catch((error) => {
+				setError(error.message);
+				throw error;
+			});
+	}
 
-    function deleteTransaction(id) {
-        dispatch({
-            type: 'DELETE_TRANSACTION',
-            payload: id
-        });
-    }
+	function signin(email, password) {
+		return auth
+			.signInWithEmailAndPassword(email, password)
+			.catch((error) => {
+				setError(error.message);
+				throw error;
+			});
+	}
 
-    function addTransaction(transaction) {
-        dispatch({
-            type: 'ADD_TRANSACTION',
-            payload: transaction
-        });
-    }
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			setCurrentUser(user);
+			setLoading(false);
+		});
+		return unsubscribe;
+	}, []);
 
-    return (
-        <GlobalContext.Provider value={{
-            transactions: state.transactions,
-            deleteTransaction,
-            addTransaction
-        }}>
-            {children}
-        </GlobalContext.Provider>
-    );
+	const value = {
+		currentUser,
+		signup,
+		signin,
+		error,
+	};
+
+	return (
+		<GlobalContext.Provider value={value}>
+			{!loading && children}
+		</GlobalContext.Provider>
+	);
 };

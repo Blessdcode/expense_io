@@ -3,10 +3,12 @@ import { useGetUserInfo } from '../hooks/useGetUserInfo';
 import { getAuth, signOut } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext';
 
 
 const Header = () => {
     const { name, profilePhoto } = useGetUserInfo()
+    const {authUser}= useAuth()
     const navigate = useNavigate();
 
 
@@ -44,7 +46,7 @@ const Header = () => {
                             </>
                         )
                     }
-                    <h3 className='font-[500] text-[16px]'>{name}</h3>
+                    <h3 className='font-[500] text-[16px]'>{authUser?.name}</h3>
                 </div>
                 <div className='ml-5'>
                     <button className='btn' onClick={handleSignOut}>Sign out</button>
