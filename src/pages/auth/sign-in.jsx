@@ -60,7 +60,7 @@ export const Auth = () => {
 						Continue with Google
 					</button>
 				</div>
-				<div className="flex items-center gap-2 border border-black rounded-[7px] py-4 px-2">
+				{/* <div className="flex items-center gap-2 border border-black rounded-[7px] py-4 px-2">
 					
                     <AiOutlineMail size={30}/>
 					<button
@@ -68,7 +68,7 @@ export const Auth = () => {
 						onClick={signUp}>
 						Continue with Email
 					</button>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
