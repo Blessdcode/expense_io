@@ -29,7 +29,7 @@ const Balance = () => {
 				{transactionType === "expense" && (
 					<span className="text-red-500">-</span>
 				)}
-				<TbCurrencyNaira className="inline-block text-primary" />
+				<TbCurrencyNaira className="inline-block text-white" />
 				{formattedAmount}
 			</>
 		);
@@ -81,8 +81,8 @@ const Balance = () => {
 					<div>
 						<p className="text-sm">Expense</p>
 						<p className="flex items-center text-lg text-white">
-							<TbCurrencyNaira className="inline-block text- mr-1" />
-							{Expense}
+							{renderAmountWithCurrency(Expense)}
+							
 						</p>
 					</div>
 				</div>
