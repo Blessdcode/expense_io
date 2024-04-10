@@ -1,98 +1,99 @@
 /** @format */
 
-import React, { useContext, useState } from "react";
-import { income, expense } from "../assets";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetTransaction } from "../hooks/useGetTransactions";
 import { TbCurrencyNaira } from "react-icons/tb";
+import { income, expense } from "../assets";
 
 const Balance = () => {
 	const { transactionTotals } = useGetTransaction();
-
-	const { balance, Income, Expense, transactionType, transactionAmount } =
-		transactionTotals;
-
 	const navigate = useNavigate();
+	const { balance, Income, Expense, transactionType } = transactionTotals;
+
+	const formattedBalance = balance >= 0 ? balance : -balance;
+	const isBalancePositive = balance >= 0;
+	const sapAlert =
+		balance >= 2000
+			? "SAPA NO GO CATCH US!!!"
+			: "OMO! SAPA DEY AROUND THE CORNER";
 
 	const onNavigateTo = () => {
 		navigate("/addexpense");
 	};
 
+	const renderAmountWithCurrency = (amount) => {
+		const formattedAmount = Math.abs(amount);
+		return (
+			<>
+				{transactionType === "expense" && (
+					<span className="text-red-500">-</span>
+				)}
+				<TbCurrencyNaira className="inline-block text-primary" />
+				{formattedAmount}
+			</>
+		);
+	};
+
 	return (
-		<div>
-			<div className="flex items-center justify-center flex-col mt-8">
-				<p className="text-[#91919F]">Account Balance</p>
-				{/* <h2 className='text-[56px] font-semibold text-primary'>N{balance}</h2> */}
-				{balance >= 0 ? (
-					<h2 className="text-[56px] font-semibold text-primary flex items-center">
-						<TbCurrencyNaira />
-						{balance}
-					</h2>
-				) : (
-					<h2 className="text-[56px] font-semibold text-primary flex items-center">
-						-
-						<TbCurrencyNaira />
-						{balance * -1}
-					</h2>
-				)}
-				{balance >= 2000 ? (
-					<p>SAPA NO GO CATCH US!!!</p>
-				) : (
-					<p>OMO! SAPA DEY AROUND THE CORNER </p>
-				)}
+		<section className="container mx-auto px-4 py-8">
+			<div className="text-center">
+				<p className="text-sm text-gray-500">Account Balance</p>
+				<h2
+					className={`text-3xl font-semibold ${
+						isBalancePositive
+							? "text-primary"
+							: "text-red-500"
+					}`}>
+					{isBalancePositive ? null : "-"}
+					<TbCurrencyNaira className="inline-block text-lg" />
+					{formattedBalance}
+				</h2>
+				<p className="mt-2 text-sm">{sapAlert}</p>
 			</div>
 
-			{/* income&expens */}
-
-			<div className="flex flex-col items-center justify-between mt-10">
-				<div className="flex gap-3">
-					<div className="text-white bg-success w-[150px] h-[72px] flex justify-between items-center p-3 rounded-[16px]">
-						<div className="bg-white w-[44px] h-[44px] flex items-center justify-center rounded-full">
-							<img
-								src={income}
-								alt="income"
-							/>
-						</div>
-						<div className="text-[18px]">
-							<p>Income</p>
-							<p className="flex items-center">
-								<TbCurrencyNaira />
-								{Income}
-							</p>
-						</div>
+			<div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div className="bg-green-500 rounded-lg p-4 text-white flex items-center justify-between">
+					<div className="bg-white rounded-full p-2">
+						<img
+							src={income}
+							alt="income"
+							className="w-8 h-8"
+						/>
 					</div>
-
-					<div className="text-white bg-danger w-[150px] h-[72px] flex justify-between items-center p-3 rounded-[16px]">
-						<div className="bg-white w-[44px] h-[44px] flex items-center justify-center rounded-full">
-							<img
-								src={expense}
-								alt="expense"
-							/>
-						</div>
-						<div className="text-[18px]">
-							<p>Expense</p>
-
-							{transactionType === "expense" ? (
-								<h2 className="flex items-center">
-									-<TbCurrencyNaira />
-									{Expense}
-								</h2>
-							) : (
-								<h2 className="flex items-center">
-									<TbCurrencyNaira />
-									{Expense}
-								</h2>
-							)}
-						</div>
+					<div>
+						<p className="text-sm">Income</p>
+						<p className="flex items-center text-lg">
+							<TbCurrencyNaira className="inline-block text- mr-1" />
+							{Income}
+						</p>
 					</div>
 				</div>
-				<button
-					onClick={onNavigateTo}
-					className="flex bg-primary text-white w-full text-center justify-center mt-4 items-center p-4 rounded-[15px]">
-					Add Transaction
-				</button>
+
+				<div className="bg-red-500 rounded-lg p-4 text-white flex items-center justify-between">
+					<div className="bg-white rounded-full p-2">
+						<img
+							src={expense}
+							alt="expense"
+							className="w-8 h-8"
+						/>
+					</div>
+					<div>
+						<p className="text-sm">Expense</p>
+						<p className="flex items-center text-lg text-white">
+							<TbCurrencyNaira className="inline-block text- mr-1" />
+							{Expense}
+						</p>
+					</div>
+				</div>
 			</div>
-		</div>
+
+			<button
+				onClick={onNavigateTo}
+				className="mt-8 w-full bg-primary text-white text-lg font-semibold py-3 rounded-lg">
+				Add Transaction
+			</button>
+		</section>
 	);
 };
 

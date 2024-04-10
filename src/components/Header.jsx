@@ -51,8 +51,7 @@ const Header = () => {
 				</div>
 			</div>
 
-			{/* User details section */}
-			<div className="flex items-center flex-col justify-end pb-3">
+			<div className="flex items-center flex-col md:flex-row justify-end pb-3">
 				<div className="flex">
 					{profilePhoto && (
 						<>
