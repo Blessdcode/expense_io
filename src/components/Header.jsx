@@ -5,6 +5,8 @@ import { useGetUserInfo } from "../hooks/useGetUserInfo";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { auth } from "../config/firebaseConfig";
+
 
 const Header = () => {
 	const { name, profilePhoto } = useGetUserInfo();
@@ -31,7 +33,7 @@ const Header = () => {
 
 	const handleSignOut = async () => {
 		try {
-			await signOut(authUser);
+			await signOut(auth);
 			localStorage.clear();
 			navigate("/");
 		} catch (error) {
@@ -51,7 +53,8 @@ const Header = () => {
 				</div>
 			</div>
 
-			<div className="flex items-center flex-col md:flex-row justify-end pb-3">
+			{/* User details section */}
+			<div className="flex items-center flex-col justify-end pb-3">
 				<div className="flex">
 					{profilePhoto && (
 						<>
