@@ -4,6 +4,7 @@ import income from './income.svg'
 import expense from './expense.svg'
 import slide from './slide.jpg'
 import ill from './ill.jpg'
+import img from './img.png'
 
 export {
     illustration,
@@ -11,5 +12,6 @@ export {
     income,
     expense,
     slide,
-    ill
+    ill,
+    img
 }

@@ -6,7 +6,7 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { auth } from "../config/firebaseConfig";
-
+import {img} from '../assets'
 
 const Header = () => {
 	const { name, profilePhoto } = useGetUserInfo();
@@ -40,6 +40,7 @@ const Header = () => {
 			console.error("Error signing out:", error.message);
 		}
 	};
+	
 
 	return (
 		<div className="flex justify-around items-center mt-4 border-b mx-0 font-[500] pt-2">
@@ -54,12 +55,14 @@ const Header = () => {
 			</div>
 
 			{/* User details section */}
-			<div className="flex items-center flex-col justify-end pb-3">
+			<div className="flex items-center flex-col md:flex-row justify-end pb-3">
 				<div className="flex">
 					{profilePhoto && (
 						<>
 							<img
-								src={profilePhoto}
+								src={
+									profilePhoto || img
+								}
 								alt={name}
 								className="w-7 h-7 mr-1 rounded-full bg-black object-cover"
 							/>

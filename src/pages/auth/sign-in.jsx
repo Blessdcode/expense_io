@@ -6,9 +6,7 @@ import { signInWithPopup } from "firebase/auth";
 import { Navigate, useNavigate } from "react-router-dom";
 import { goggle, ill } from "../../assets";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
-import {AiOutlineMail} from "react-icons/ai";
-
-
+import { AiOutlineMail } from "react-icons/ai";
 
 export const Auth = () => {
 	const { isAuth } = useGetUserInfo();
@@ -23,10 +21,10 @@ export const Auth = () => {
 		};
 		localStorage.setItem("auth", JSON.stringify(authInfo));
 		navigate("/home");
-    };
-    const signUp = () => {
-        navigate("/sign-in")
-    }
+	};
+	const signUp = () => {
+		navigate("/sign-in");
+	};
 	if (isAuth) {
 		return <Navigate to={"/home"} />;
 	}

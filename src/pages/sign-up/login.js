@@ -1,12 +1,31 @@
 /** @format */
 
-import React,{useRef} from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useRef } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../config/firebaseConfig";
 
 export const LoginWithEmail = () => {
-    const emailRef = useRef();
-    const passwordRef = useRef();
+	const emailRef = useRef();
+	const passwordRef = useRef();
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+		try {
+			const userCredential = await signInWithEmailAndPassword(
+				auth,
+				emailRef.current.value,
+				passwordRef.current.value
+			);
+			console.log(userCredential);
+			const user = userCredential.user;
+			localStorage.setItem("user", JSON.stringify(user));
+			navigate("/home");
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
 	const navigate = useNavigate();
 	const onNavigate = () => {
@@ -28,7 +47,7 @@ export const LoginWithEmail = () => {
 				<p>Login now to track all your expenses and income!</p>
 			</div>
 			<form
-				// onSubmit={}
+				onSubmit={handleSubmit}
 				className="mt-3">
 				<div className="flex flex-col  g-5"></div>
 				{/* email */}
@@ -40,8 +59,8 @@ export const LoginWithEmail = () => {
 					<input
 						type="email"
 						placeholder="Ex: abc@example.com"
-                        required
-                        ref={emailRef}
+						required
+						ref={emailRef}
 						className="w-fill border w-full py-4 px-6"
 					/>
 				</div>
@@ -56,7 +75,7 @@ export const LoginWithEmail = () => {
 						type="password"
 						placeholder="Ex. ********"
 						required
-                        ref={passwordRef}
+						ref={passwordRef}
 						className="border w-full py-4 px-6"
 					/>
 				</div>

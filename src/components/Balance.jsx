@@ -14,9 +14,9 @@ const Balance = () => {
 	const formattedBalance = balance >= 0 ? balance : -balance;
 	const isBalancePositive = balance >= 0;
 	const sapAlert =
-		balance >= 2000
-			? "SAPA NO GO CATCH US!!!"
-			: "OMO! SAPA DEY AROUND THE CORNER";
+		balance >= 3000
+			? "SAPA NO GO CATCH US!!"
+			: "YOU DON TOO DEY SPEND";
 
 	const onNavigateTo = () => {
 		navigate("/addexpense");

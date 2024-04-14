@@ -11,16 +11,34 @@ import { useNavigate } from "react-router-dom";
 const TransactionAll = () => {
 	const { transactions, deleteTransaction } = useGetTransaction();
 	const [hoveredId, setHoveredId] = useState(null);
+	const [sortBy, setSortBy] = useState("date"); 
 	const navigate = useNavigate();
 
-	const handleDelete = (transactionId) => {
-		deleteTransaction(transactionId);
-		toast.success("Transaction deleted successfully!");
+	const handleDelete = async (transactionId) => {
+		try {
+			await deleteTransaction(transactionId);
+			toast.success("Transaction deleted successfully!");
+		} catch (error) {
+			toast.error(`Error deleting transaction: ${error.message}`);
+		}
 	};
 
 	const onNavigate = () => {
 		navigate("/home");
 	};
+
+	const sortedTransactions = [...transactions].sort((a, b) => {
+		switch (sortBy) {
+			case "date":
+				return new Date(b.date) - new Date(a.date); 
+			case "amount":
+				return b.transactionAmount - a.transactionAmount; 
+			case "title":
+				return a.title.localeCompare(b.title); 
+			default:
+				return 0;
+		}
+	});
 
 	return (
 		<div className="container mt-10">
@@ -29,26 +47,42 @@ const TransactionAll = () => {
 					size={34}
 					onClick={onNavigate}
 					className="cursor-pointer"
+					aria-label="Home"
 				/>
 				<p className="text-2xl font-bold text-primary">
 					Transaction History
 				</p>
 			</div>
 
-			{transactions.length === 0 && (
+			<div className="mb-4">
+				<label htmlFor="sort-by">Sort by:</label>
+				<select
+					id="sort-by"
+					className="ml-2 border"
+					value={sortBy}
+					onChange={(e) => setSortBy(e.target.value)}>
+					<option value="date">Date</option>
+					<option value="amount">Amount</option>
+					<option value="title">Title</option>
+				</select>
+			</div>
+
+			{sortedTransactions.length === 0 && (
 				<p className="text-lg">No transactions added yet.</p>
 			)}
 
-			{transactions.length > 0 && (
+			{sortedTransactions.length > 0 && (
 				<div className="grid gap-8">
-					{transactions.map((transaction) => {
+					{sortedTransactions.map((transaction) => {
 						const {
 							id,
 							title,
 							description,
 							transactionAmount,
 							transactionType,
+							date,
 						} = transaction;
+
 						return (
 							<div
 								key={id}
@@ -62,6 +96,12 @@ const TransactionAll = () => {
 									<p className="text-sm text-gray-600">
 										{description}
 									</p>
+									{/* <p className="text-sm text-gray-500">
+										Date:{" "}
+										{new Date(
+											date
+										).toLocaleDateString()}
+									</p> */}
 								</div>
 								<div
 									className={`text-lg font-bold ${
@@ -83,6 +123,7 @@ const TransactionAll = () => {
 											handleDelete(id)
 										}
 										className="absolute -right-6 cursor-pointer"
+										aria-label="Delete"
 									/>
 								)}
 							</div>
