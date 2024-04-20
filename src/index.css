@@ -29,6 +29,9 @@ html {
 .btn {
 	@apply bg-[#FFDF8C] px-4 py-2 rounded-full font-semibold hover:scale-105 transition;
 }
+.btn2{
+	@apply bg-[#FFDF8C] px-4 py-2 rounded-md font-semibold hover:scale-105 transition;
+}
 
 .box-shadow {
 	/* box-shadow: 4px 2px 16px  rgba(0, 0, 0, 0.3); */

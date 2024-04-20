@@ -18,45 +18,47 @@ import { AuthProvider } from "./context/AuthContext";
 
 
 
+
 export default function App() {
 	return (
 		<div className="flex flex-col ">
 			<GlobalProvider>
 				<AuthProvider>
-				<Router>
-					<Routes>
-						<Route
-							path="/"
-							exact
-							element={<Auth />}
-						/>
-						<Route
-							path="/home"
-							element={<Home />}
-						/>
-						<Route
-							path="/addincome"
-							element={<AddIncome />}
-						/>
-						<Route
-							path="/addexpense"
-							element={<AddExpense />}
-						/>
-						<Route
-							path="/transaction"
-							element={<TransactionAll />}
-						/>
-						<Route
-							path="/sign-in"
-							element={<SignUpEmail />}
-						/>
-						<Route
-							path="/log-in"
-							element={<LoginWithEmail />}
-						/>
-					</Routes>
-				</Router>
-				<ToastContainer />
+					<Router>
+						<Routes>
+							<Route
+								path="/"
+								exact
+								element={<Auth />}
+							/>
+							<Route
+								path="/home"
+								element={<Home />}
+							/>
+							<Route
+								path="/addincome"
+								element={<AddIncome />}
+							/>
+							<Route
+								path="/addexpense"
+								element={<AddExpense />}
+							/>
+							<Route
+								path="/transaction"
+								element={<TransactionAll />}
+							/>
+							<Route
+								path="/sign-in"
+								element={<SignUpEmail />}
+							/>
+							<Route
+								path="/log-in"
+								element={<LoginWithEmail />}
+							/>
+							
+						</Routes>
+					</Router>
+					<ToastContainer />
 				</AuthProvider>
 			</GlobalProvider>
 		</div>
