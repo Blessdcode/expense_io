@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+	background: #102632;
+	color: #FFFFFF;
+}
+
 .overflow {
 	overflow-x: hidden;
 }
@@ -27,10 +32,10 @@ html {
 }
 
 .btn {
-	@apply bg-[#FFDF8C] px-4 py-2 rounded-full font-semibold hover:scale-105 transition;
+	@apply bg-black px-4 py-2 rounded-full font-semibold hover:scale-105 transition;
 }
 .btn2{
-	@apply bg-[#FFDF8C] px-4 py-2 rounded-md font-semibold hover:scale-105 transition;
+	@apply bg-white text-[#102632] px-4 py-2 rounded-md font-semibold hover:scale-105 transition;
 }
 
 .box-shadow {
@@ -53,35 +58,23 @@ input[type="number"] {
 	width: 100%;
 }
 
-/* 
-.input {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.input[type="radio"] {
-    display: none;
-}
-
-.input label {
-    margin-right: 10px;
-    padding: 8px 12px;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.input[type="radio"]:checked+label {
-    background-color: #4caf50;
-    color: #ffffff;
-    padding: 4px;
-    border-radius: 4px;
-} */
-
 .abs {
 	position: absolute;
 	right: 0;
 	margin-left: 12px;
+}
+
+.modal-content{
+	position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  margin: auto;
+  background: white;
+  color: #102632;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 3000;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }

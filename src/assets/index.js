@@ -3,7 +3,7 @@ import goggle from './goggle.svg'
 import income from './income.svg'
 import expense from './expense.svg'
 import slide from './slide.jpg'
-import ill from './ill.jpg'
+import ill from './ill.png'
 import img from './img.png'
 
 export {

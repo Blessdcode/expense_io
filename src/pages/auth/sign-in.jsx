@@ -38,16 +38,16 @@ export const Auth = () => {
 				/>
 			</div>
 			<div className="flex flex-col my-5">
-				<h1 className=" w-4/5 md:w-full text-[38px] md:text-[46px] font-bold text-[#292830]">
+				<h1 className=" w-4/5 md:w-full text-[38px] md:text-[46px] font-bold text-white">
 					Track your Expenses to Save Money
 				</h1>
-				<p className="text-[14px] text-left md:text-center text-[#292830]">
+				<p className="text-[14px] text-left md:text-center text-white">
 					Expense.io helps you to organize your income and
 					expenses
 				</p>
 			</div>
 			<div className="flex flex-col md:flex-row gap-3">
-				<div className="flex items-center gap-2 border border-black rounded-[7px] py-4 px-2">
+				<div className="flex items-center gap-2 border border-white rounded-[7px] py-4 px-2">
 					<img
 						src={goggle}
 						alt="goggle"
