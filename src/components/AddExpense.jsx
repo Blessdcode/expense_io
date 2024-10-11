@@ -1,27 +1,25 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AiFillHome } from "react-icons/ai";
-import { TbCurrencyNaira } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
+
 import { useAddTransaction } from "../hooks/useAddTransaction";
-import { useGetTransaction } from "../hooks/useGetTransactions";
+// import { useGetTransaction } from "../hooks/useGetTransactions";
 
 const AddExpense = () => {
   const { addTransaction } = useAddTransaction();
-  const { transactionTotals } = useGetTransaction();
+  // const { transactionTotals } = useGetTransaction();
 
-  const navigate = useNavigate();
-  const onNavigate = () => {
-    navigate("/home");
-  };
+ 
+  // const onNavigate = () => {
+  //   navigate("/home");
+  // };
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [transactionAmount, setTransactionAmount] = useState("");
   const [transactionType, setTransactionType] = useState();
 
-  const { balance } = transactionTotals;
+  // const { balance } = transactionTotals;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -40,37 +38,7 @@ const AddExpense = () => {
   };
 
   return (
-    // <div className="bg-primary h-screen">
-    //   <div className="container">
-	// 			<div className="flex justify-between items-center text-white">
-	// 				<AiFillHome
-	// 					size={32}
-	// 					className="text-white"
-	// 					onClick={onNavigate}
-	// 				/>
-	// 				<h2 className="text-3xl font-semibold">
-	// 					Add new transaction
-	// 				</h2>
-	// 			</div>
-
-	// 			<div className="text-white mt-20 ">
-	// 				<p className=" text-lg">Balance</p>
-	// 				{balance >= 0 ? (
-	// 					<h2 className="text-[56px] font-semibold text-white flex items-center">
-	// 						<TbCurrencyNaira />
-	// 						{balance}
-	// 					</h2>
-	// 				) : (
-	// 					<h2 className="text-[56px] font-semibold text-white flex items-center">
-	// 						-<TbCurrencyNaira />
-	// 						{balance * -1}
-	// 					</h2>
-	// 				)}
-	// 			</div>
-	// 		</div>
-			
-     
-    // </div>
+  
 	 <div className="bg-white w-full h-full text-primary px-8 pt-[30px] pb-9">
         {/* <h3 className='text-[18px] font-bold'></h3> */}
         <form onSubmit={onSubmit} className="mt-6">

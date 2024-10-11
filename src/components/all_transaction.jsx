@@ -78,7 +78,6 @@ const TransactionAll = () => {
               description,
               transactionAmount,
               transactionType,
-              date,
             } = transaction;
 
             return (
@@ -90,12 +89,7 @@ const TransactionAll = () => {
                 <div className="flex flex-col">
                   <h3 className="text-lg font-semibold capitalize">{title}</h3>
                   <p className="text-sm text-gray-300">{description}</p>
-                  {/* <p className="text-sm text-gray-500">
-										Date:{" "}
-										{new Date(
-											date
-										).toLocaleDateString()}
-									</p> */}
+                
                 </div>
                 <div
                   className={`text-lg font-bold ${

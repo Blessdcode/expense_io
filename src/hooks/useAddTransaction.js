@@ -1,4 +1,3 @@
-import React from 'react'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { db } from '../config/firebaseConfig'
 import { useGetUserInfo } from './useGetUserInfo'

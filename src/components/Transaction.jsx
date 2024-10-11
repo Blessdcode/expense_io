@@ -1,47 +1,34 @@
 /** @format */
 
 import React, { useState } from "react";
-import { AiFillDelete } from "react-icons/ai";
 import { TbCurrencyNaira } from "react-icons/tb";
-import { useAddTransaction } from "../hooks/useAddTransaction";
+// import { useAddTransaction } from "../hooks/useAddTransaction";
 import { useGetTransaction } from "../hooks/useGetTransactions";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const Transaction = ({ transaction }) => {
-	const { addTransaction } = useAddTransaction();
-	const { transactions, deleteTransaction } = useGetTransaction();
-	const [hoveredId, setHoveredId] = useState(null);
-	const handleDelete = (transactionId) => {
-		deleteTransaction(transactionId);
-		toast.success("Transaction deleted successfully!");
-	};
-	const navigate = useNavigate();
-	const onNavigate = () => {
-		navigate("/transaction");
-	};
+  // const { addTransaction } = useAddTransaction();
+  const { transactions } = useGetTransaction();
+  const [hoveredId, setHoveredId] = useState(null);
 
-	return (
-		<div className="mt-10">
-			<div className="flex justify-between items-center mb-8">
-				<p className="text-[24px] text-white">Transactions</p>
-				<div
-					className="btn"
-					onClick={onNavigate}>
-					see all
-				</div>
-			</div>
-			<div className="p-4 h-[30vh] overflow-scroll">
-				{transactions.map((transaction, index) => {
-					const {
-						id,
-						title,
-						description,
-						transactionAmount,
-						transactionType,
-					} = transaction;
-					return (
+  const navigate = useNavigate();
+  const onNavigate = () => {
+    navigate("/transaction");
+  };
+
+  return (
+    <div className="mt-10">
+      <div className="flex justify-between items-center mb-8">
+        <p className="text-[24px] text-white">Transactions</p>
+        <div className="btn" onClick={onNavigate}>
+          see all
+        </div>
+      </div>
+      <div className="p-4 h-[30vh] overflow-scroll">
+        {transactions.map((transaction) => {
+          const { id, title, transactionAmount, transactionType } = transaction;
+          return (
             <div
               key={id}
               onMouseEnter={() => setHoveredId(id)}
@@ -73,23 +60,15 @@ const Transaction = ({ transaction }) => {
                 )}
               </div>
 
-              {/* {hoveredId === id && (
-								<div className="cursor-pointer">
-									<AiFillDelete
-										size={20}
-										color="red"
-										onClick={() =>
-											handleDelete(id)
-										}
-									/>
-								</div>
-							)} */}
+              {!hoveredId === id && (
+               <div></div>
+              )}
             </div>
           );
-				})}
-			</div>
-		</div>
-	);
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Transaction;

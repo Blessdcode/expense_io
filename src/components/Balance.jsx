@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useGetTransaction } from "../hooks/useGetTransactions";
 import { TbCurrencyNaira } from "react-icons/tb";
 import { income, expense } from "../assets";
@@ -9,7 +8,6 @@ import AddExpenses from "../components/add-expense";
 
 const Balance = () => {
   const { transactionTotals } = useGetTransaction();
-  const navigate = useNavigate();
   const { balance, Income, Expense, transactionType } = transactionTotals;
   const [toggle, setToggle] = useState(false);
 
@@ -22,9 +20,9 @@ const Balance = () => {
   // const sapAlert =
   //   balance >= 3000 ? "SAPA NO GO CATCH US!!" : "YOU DON TOO DEY SPEND";
 
-  const onNavigateTo = () => {
-    navigate("/addexpense");
-  };
+  // const onNavigateTo = () => {
+  //   navigate("/addexpense");
+  // };
 
   const renderAmountWithCurrency = (amount) => {
     const formattedAmount = Math.abs(amount);

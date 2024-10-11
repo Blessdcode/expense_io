@@ -2,18 +2,16 @@
 
 import React, { useState } from "react";
 import { useGetUserInfo } from "../hooks/useGetUserInfo";
-import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { auth } from "../config/firebaseConfig";
+// import { signOut } from "firebase/auth";
+// import { useAuth } from "../context/AuthContext";
+// import { auth } from "../config/firebaseConfig";
 import { img } from "../assets";
 import Profie from "../layout/Profie";
 
 
 const Header = () => {
 	const { name, profilePhoto } = useGetUserInfo();
-	const { authUser } = useAuth();
-	const navigate = useNavigate();
+	// const { authUser } = useAuth();
 	const [open, setOpen] = useState(false)
 
 	// Get the current date
@@ -34,15 +32,15 @@ const Header = () => {
 		greeting = "Good evening";
 	}
 
-	const handleSignOut = async () => {
-		try {
-			await signOut(auth);
-			localStorage.clear();
-			navigate("/");
-		} catch (error) {
-			console.error("Error signing out:", error.message);
-		}
-	};
+	// const handleSignOut = async () => {
+	// 	try {
+	// 		await signOut(auth);
+	// 		localStorage.clear();
+	// 		navigate("/");
+	// 	} catch (error) {
+	// 		console.error("Error signing out:", error.message);
+	// 	}
+	// };
 
 
 	return (
